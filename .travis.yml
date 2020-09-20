@@ -11,9 +11,14 @@ script:
   - docker run -e CI=true poe/poeclient npm run test
 
 after_success:
-  - docker build -t poe/poeclient -f Dockerfile.prod . 
+  - docker build -t poe/poeclient -f Dockerfile . 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push poe/poeclient
-
+  - heroku login -i
+  - jsalaz1989@gmail.com
+  - Apollo13!
+  - heroku container:login
+  - heroku container:push web
+  - heroku container:release web
 
   #tri
