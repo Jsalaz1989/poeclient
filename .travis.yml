@@ -10,18 +10,25 @@ before_install:
 script:
   - docker run -e CI=true poeclient npm run test
 
-# after_success:
-#   - docker build -t poeclient -f Dockerfile . 
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-#   - docker push poeclient
-
 after_success:
-  # - docker tag poe/poeclient registry.heroku.com/poeapp/web
-  - heroku login -i
-  - echo "$HEROKU_CREDENTIALS_EMAIL"
-  - echo "$HEROKU_CREDENTIALS_PASSWORD"  
-  - heroku container:login
-  - heroku container:push web
-  - heroku container:release web
+  - docker build -t poeclient -f Dockerfile . 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push poeclient
+
+# after_success:
+#   # - docker tag poe/poeclient registry.heroku.com/poeapp/web
+#   - heroku login -i
+#   - echo "$HEROKU_CREDENTIALS_EMAIL"
+#   - echo "$HEROKU_CREDENTIALS_PASSWORD"  
+#   - heroku container:login
+#   - heroku container:push web
+#   - heroku container:release web
+
+
+deploy:
+  provider: heroku
+  app: poeapp
+  api_key:
+    secure: b9b45db6-45fc-4a02-b0f4-eefa728fbc85
 
   #trig
