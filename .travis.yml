@@ -20,7 +20,7 @@ after_success:
   - (
       echo "$HEROKU_CREDENTIALS_EMAIL"
       echo "$HEROKU_CREDENTIALS_PASSWORD"
-    ) | heroku login
+    ) | heroku login -i
   - heroku container:login
   - heroku container:push web
   - heroku container:release web
