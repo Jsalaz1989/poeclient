@@ -30,5 +30,6 @@ deploy:
   app: poeapp
   api_key:
     secure: b9b45db6-45fc-4a02-b0f4-eefa728fbc85
+  skip_cleanup: true
 
   #trig
