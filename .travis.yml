@@ -17,10 +17,9 @@ script:
 
 after_success:
   # - docker tag poe/poeclient registry.heroku.com/poeapp/web
-  - (
-      echo "$HEROKU_CREDENTIALS_EMAIL"
-      echo "$HEROKU_CREDENTIALS_PASSWORD"
-    ) | heroku login -i
+  - heroku login -i
+  - echo "$HEROKU_CREDENTIALS_EMAIL"
+  - echo "$HEROKU_CREDENTIALS_PASSWORD"  
   - heroku container:login
   - heroku container:push web
   - heroku container:release web
