@@ -18,8 +18,8 @@ after_success:
 # after_success:
 #   - docker tag poe/poeclient registry.heroku.com/poeapp/web
 #   - heroku login -i
-#   - jsalaz1989@gmail.com
-#   - Apollo13!
+#   - echo jsalaz1989@gmail.com
+#   - echo Apollo13!
 #   - heroku container:login
 #   - heroku container:push web
 #   - heroku container:release web
