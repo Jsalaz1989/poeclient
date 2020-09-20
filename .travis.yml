@@ -5,7 +5,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t poeclient -f Dockerfile .
+  - docker build -t poeclient -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true poeclient npm run test
