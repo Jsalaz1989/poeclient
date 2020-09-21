@@ -1,22 +1,19 @@
 language: generic
 sudo: required
-
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build -t poeclient -f Dockerfile.dev .
-
+- docker build -t poeclient -f Dockerfile.dev .
 script:
-  - docker run -e CI=true poeclient npm run test
-
+- docker run -e CI=true poeclient npm run test
 after_success:
-  - docker build -t poeclient -f Dockerfile . 
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push poeclient
-
-# With Heroku CLI this is heroku login && heroku container:login && heroku container:push web && heroku container:release web
+- docker build -t poeclient -f Dockerfile .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+- docker push poeclient
 deploy:
   provider: heroku
   app: poeapp
-  skip_cleanup: true  # get an error if you don't have this here
+  skip_cleanup: true
+  # Had to do travis encrypt <heroku api key> -r <repo/name> --add deploy.api_key --pro
+  api_key:
+    secure: NuBlsip1ZCyzjVNNOJ2vscLuS+f8RKMi5ow9eXXVrZUrX7qk4xZhiv/rIfijK111ilIprMhsH5Bjp4PAfUsYnMymZtBYIkmK6Qa62An1mrMYAK9CMauv9ucKskRfbT1doHNQbXCRQ0aWk8GHuf5DRgn4iD3QVboIhXYhdOmqstKsmlSuLJtCjuPQJO6r+6vVO9/fGwWOeB3eKcAjul2gSImUp/19RPvrUnN1ogxeGnhs6S+y9AY9R0ec3oLFnww+pImw027QQKK00dUQnv/CXwBNtnQ6W8UqlCOXQuRJzQjEJQbjvGU8BTlcNbSlme0rw+GoXQ052h99zeia89MWv8G3lSP6gg2Yb69992c3j+XGmJvcNU9O6ZxN2ct2Rn1OQB8asm83RWYwMZADya0PZ+vmt4N+kwUi9ATtddjv4K97KITNMj9abFQbo719yJg81mDtCzhABhqclFjg8TBtaOD8+7LpMQBXT9D4/5/JJy3pu2gvK/ExWASA1hdPHKvh6TJPCQPL2W/y78bpy4KGU+W8MQBhDtI05B5TPNIK+nRR5Vma5b0yXkT50BePAWcROghoi/eqXW9hUIDPmmgk8XNd7s6/d1KM2fI7b1yR2Yo3Gjq5RXjjR56lsfwbRBbJJAEIILzl0CyL+92MgCePKVEXXFhFH10ziFuRX6+8og8=
