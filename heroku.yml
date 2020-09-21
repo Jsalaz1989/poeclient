@@ -1,3 +1,4 @@
+# With Heroku CLI this is heroku login && heroku container:login && heroku container:push web && heroku container:release web
 build:
     docker:
-      web: Dockerfile
+        web: Dockerfile
