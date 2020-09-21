@@ -19,5 +19,4 @@ after_success:
 deploy:
   provider: heroku
   app: poeapp
-  api_key: b9b45db6-45fc-4a02-b0f4-eefa728fbc85
   skip_cleanup: true  # get an error if you don't have this here
