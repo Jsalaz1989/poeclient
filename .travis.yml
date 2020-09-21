@@ -15,20 +15,9 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push poeclient
 
-# after_success:
-#   # - docker tag poe/poeclient registry.heroku.com/poeapp/web
-#   - heroku login -i
-#   - echo "$HEROKU_CREDENTIALS_EMAIL"
-#   - echo "$HEROKU_CREDENTIALS_PASSWORD"  
-#   - heroku container:login
-#   - heroku container:push web
-#   - heroku container:release web
-
-
+# With Heroku CLI this is heroku login && heroku container:login && heroku container:push web && heroku container:release web
 deploy:
   provider: heroku
   app: poeapp
   api_key: b9b45db6-45fc-4a02-b0f4-eefa728fbc85
-  skip_cleanup: true
-
-  #trig
+  skip_cleanup: true  # get an error if you don't have this here
