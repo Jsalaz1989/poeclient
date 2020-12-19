@@ -1,4 +1,4 @@
 # This file is required when deploying to Heroku via Travis CI (couldn't get it to work simulating the Heroku CLI commands in .travis.yml)
 build:
     docker:
-        web: Dockerfile
+        web: Dockerfile.prod
