@@ -3,13 +3,13 @@ sudo: required
 services:
 - docker
 before_install:
-- docker build -t poeclient -f Dockerfile.prod .
+- docker build -t poeclient:prod -f Dockerfile.prod .
 script:
-- docker run -e CI=true poeclient npm run test
+- docker run -e CI=true poeclient:prod npm run test
 after_success:
-- docker build -t poeclient -f Dockerfile.prod .
+- docker build -t poeclient:prod -f Dockerfile.prod .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-- docker push poeclient
+- docker push poeclient:prod
 deploy:
   provider: heroku
   app: poeapp
