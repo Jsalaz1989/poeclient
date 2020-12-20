@@ -4,8 +4,6 @@ services:
 - docker
 before_install:
 - docker build -t poeclient:prod -f Dockerfile.prod .
-# script:
-# - docker run -e CI=true poeclient:prod npm run test
 after_success:
 - docker build -t poeclient:prod -f Dockerfile.prod .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -14,6 +12,5 @@ deploy:
   provider: heroku
   app: poeapp
   skip_cleanup: true
-  # Had to do travis encrypt <heroku api key> -r <repo/name> --add deploy.api_key --pro
   api_key:
-    secure: NuBlsip1ZCyzjVNNOJ2vscLuS+f8RKMi5ow9eXXVrZUrX7qk4xZhiv/rIfijK111ilIprMhsH5Bjp4PAfUsYnMymZtBYIkmK6Qa62An1mrMYAK9CMauv9ucKskRfbT1doHNQbXCRQ0aWk8GHuf5DRgn4iD3QVboIhXYhdOmqstKsmlSuLJtCjuPQJO6r+6vVO9/fGwWOeB3eKcAjul2gSImUp/19RPvrUnN1ogxeGnhs6S+y9AY9R0ec3oLFnww+pImw027QQKK00dUQnv/CXwBNtnQ6W8UqlCOXQuRJzQjEJQbjvGU8BTlcNbSlme0rw+GoXQ052h99zeia89MWv8G3lSP6gg2Yb69992c3j+XGmJvcNU9O6ZxN2ct2Rn1OQB8asm83RWYwMZADya0PZ+vmt4N+kwUi9ATtddjv4K97KITNMj9abFQbo719yJg81mDtCzhABhqclFjg8TBtaOD8+7LpMQBXT9D4/5/JJy3pu2gvK/ExWASA1hdPHKvh6TJPCQPL2W/y78bpy4KGU+W8MQBhDtI05B5TPNIK+nRR5Vma5b0yXkT50BePAWcROghoi/eqXW9hUIDPmmgk8XNd7s6/d1KM2fI7b1yR2Yo3Gjq5RXjjR56lsfwbRBbJJAEIILzl0CyL+92MgCePKVEXXFhFH10ziFuRX6+8og8=
+    secure: IpR4CzVH0khuNMN7u7d43lZcbJL3ulWH6qEZbG59grF0jxf0Lb7B7KwXMD71BbNuX1+3LBjTGNNMp6m2a+HrMw8HO3GHT7xpVCHiYBDLIMo4/+6H4dGe0fQx0s2tE1/FauQZ4XdNjqXa6+zyehiusIogX0POpNS0yHU2BNCmQOTxroE89JaGA1os3+ZTOcPE0RJdbdSv6XeXFvS+Qz5X5cH5iYFcohp+vghX9KQdxT6GqWFWz0D1TqlbL5TDCtfdPQruNpEGwbnSeLPo1Mvj9OcQUkavFbuN9SDuE5cIpXQ4F9B+Ch5bpH9B0p7Rm3MJvsfoRXmEqeR/ZKr1OA01G13c+EdEAOwh3P0sLcMgVzs++9WboYFexGtqHkqQnZ/ib542bhKLW2WgUCyTr7KJlkPk5T8zwOQDxos0Y7Ui+8jakkJG6fcNLJQYc//ALfvo2EDL5eheg82A9cwgvhoEIxlIG2gdFsarV1ibsyHFqUBV2HoAkkxAaaUoH9p7+AtfRaFlB0Ay/X14mVoUMWz0C1IhVc0khsaTwpeihEzuIDRHEWn+jkT0JC6Zu0ji3Dnvwlbx5XT45eCBMeM9mShbtnQS53ZP4MLcyCK7nBpUoiyCayG4TokTuJlkgX5aO32BD4+EdGxZsXHth7uYlXcrRdOAl/rOIhCEM5V5iWhd6q4=

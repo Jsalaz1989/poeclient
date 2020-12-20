@@ -1,1 +1,6 @@
-test2
+Travis CI
+    To get api key in .travis.yml had to first
+        -   Install Ruby: sudo apt install ruby-full (maybe sudo apt update and/or sudo apt upgrade)
+        -   Install Travis: sudo gem install travis
+        -   Log in to Travis: travis login --pro --github-token <github_token> (I regenerated the token on GitHub but not sure if it was necessary)
+        -   Get the key: travis encrypt <heroku api key> -r <repo_owner/repo_name> --add deploy.api_key --pro (where <repo_owner/repo_name> = jsalaz1989/poeclient)
