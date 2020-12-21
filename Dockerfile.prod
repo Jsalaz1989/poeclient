@@ -25,6 +25,8 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build /usr/share/nginx/html
 
 #RUN apk add --no-cache nodejs-current  --repository="http://dl-cdn.alpinelinux.org/alpine/edge/main"
+COPY package.json ./
+COPY package-lock.json ./
 RUN apk add --update npm
 
 # For Heroku?
