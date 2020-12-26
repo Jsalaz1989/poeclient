@@ -13,8 +13,10 @@ COPY package-lock.json ./
 
 # some CI stuff I guess
 RUN npm ci
-RUN npm install react-scripts@3.4.1 -g --silent
+# TODO: RUN npm install?
+# RUN npm install react-scripts@3.4.1 -g --silent 
 COPY . ./
+RUN npm run test
 RUN npm run build
 
 # production environment
