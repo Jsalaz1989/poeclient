@@ -1,13 +1,15 @@
 language: generic
+
 sudo: required
+
 services:
 - docker
-before_install:
+
+script:
 - docker build -t poeclient:prod -f Dockerfile.prod .
 # script:
-# - docker run -e CI=true poeclient:prod npm run test
+# - docker build -t poeclient:prod -f Dockerfile.prod .
 after_success:
-- docker build -t poeclient:prod -f Dockerfile.prod .
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 - docker push poeclient:prod
 deploy:
