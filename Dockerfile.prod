@@ -7,7 +7,7 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
+# install app dependencies (npm ci is like npm install but more clean slate-y)
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci
@@ -15,8 +15,8 @@ RUN npm ci
 # add app
 COPY . ./
 
-# test app
-ENV CI true
+# test app (CI=true avoids Travis build getting stuck after npm run test)
+ENV CI true 
 RUN npm run test
 
 # build app
@@ -28,6 +28,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # If using React Router
 COPY --from=builder /app/build /usr/share/nginx/html
+
+RUN adduser -D myuser
+USER myuser
 
 # For Heroku?
 CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
