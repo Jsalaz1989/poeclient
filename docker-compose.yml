@@ -9,8 +9,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-    #   - '.:/app'          # linking these up produces permission error
-      - '/app/node_modules' # avoids node_modules in Dockerfile build from being overwritten when mounting cd
+      - '.:/app'            # required for hot reloading, needs Dockerfile user = local user
+      - '/app/node_modules' # avoids node_modules in Dockerfile build from being overwritten when mounting cwd
     ports:
       - 3001:3000
     environment:

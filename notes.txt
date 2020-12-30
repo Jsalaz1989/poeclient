@@ -4,3 +4,6 @@ Travis CI
         -   Install Travis: sudo gem install travis
         -   Log in to Travis: travis login --pro --github-token <github_token> (I regenerated the token on GitHub but not sure if it was necessary)
         -   Get the key: travis encrypt <heroku api key> -r <repo_owner/repo_name> --add deploy.api_key --pro (where <repo_owner/repo_name> = jsalaz1989/poeclient)
+Docker
+    Permission error with /app/.eslintcache: Copying over . to container's /app results in a .eslintcache with root repo_owner
+    Chown .eslintcache locally to jplusplus (uid: 1000) to match user
